@@ -21,39 +21,39 @@
 </head>
 
 <body <?php body_class(); ?>>
-<?php wp_body_open(); ?>
+<?php wp_body_open('padding-menu'); ?>
 <div id="page" class="site">
-	<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'florian-custom' ); ?></a>
+	
+	<nav class="navbar fixed-top navbar-expand-lg navbar-florian">
+	<div class="container">
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+		<?php
+		$items = wp_get_nav_menu_items(
+			get_nav_menu_locations("main-menu")["main-menu"]
+		);
+		foreach($items as $menuItem) :
+		?>
+			<li class="nav-item">
+			<a class="nav-link" aria-current="page" href=" <?= $menuItem->url ?>"><?= $menuItem->title; ?></a>
+			</li>
+			<?php endforeach; ?>
+		</ul>
+		<form class="d-flex">
+			<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+			<button class="btn btn-outline-success" type="submit">Search</button>
+		</form>
+		</div>
+	</div>
+	</nav>
 
-	<header id="masthead" class="site-header">
-		<div class="site-branding">
-			<?php
-			the_custom_logo();
-			if ( is_front_page() && is_home() ) :
-				?>
-				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-				<?php
-			else :
-				?>
-				<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
-				<?php
-			endif;
-			$florian_custom_description = get_bloginfo( 'description', 'display' );
-			if ( $florian_custom_description || is_customize_preview() ) :
-				?>
-				<p class="site-description"><?php echo $florian_custom_description; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
-			<?php endif; ?>
-		</div><!-- .site-branding -->
+	
+		<section class="header-logo">
+		<?php the_custom_logo(); ?>
+		</section>
 
-		<nav id="site-navigation" class="main-navigation">
-			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'florian-custom' ); ?></button>
-			<?php
-			wp_nav_menu(
-				array(
-					'theme_location' => 'menu-1',
-					'menu_id'        => 'primary-menu',
-				)
-			);
-			?>
-		</nav><!-- #site-navigation -->
-	</header><!-- #masthead -->
+
+	

@@ -29,3 +29,24 @@ body{
     display: grid;
     place-items: center;
 }
+
+.card-article{
+    margin-bottom: 60px;
+}
+
+.card-article-img img{
+    height: 300px;
+    object-fit: cover;
+}
+
+.card-article-content{
+    text-align: center;
+    margin-top: 15px;
+
+}
+
+.card-article.first{
+    .card-article-img img{
+        height: 500px;
+    }
+}

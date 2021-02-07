@@ -22,47 +22,46 @@ get_header();
         <div class="row">
             <!-- Blog Items -->
             <div class="col-lg-8">
-                <?php
+                <?php 
                 if (have_posts()) : ?>
                     
                     <div class="row">
                     <?php /* Start the Loop */
-                    
+                    $i = 1;
                     while (have_posts()) :
                         the_post();
                     ?>
-                    <div class="col-md-6">
-                        <div class="card-article">
+                   <?php if($i ==1){
+                        echo "<div class='col-md-12'>";
+                        echo "<div class='card-article first'>";
+                    } else {
+                        echo  "<div class='col-md-6'>";
+                        echo "<div class='card-article'>";
+                    } ?>
+                    
+                        
                             <div class="card-article-img">
-
+                            <?php florian_custom_post_thumbnail(); ?>
                             </div>
                             <div class="card-article-content">
-                                
+                                <h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+                                <p><?php the_excerpt(); ?></p>
+                                <a href="<?php the_permalink(); ?>">"Read more</a>
                             </div>
                         </div>
                     </div>
 
 
-                    <?
+                    <?php $i++; endwhile; ?>
 
-                        /*
-				 * Include the Post-Type-specific template for the content.
-				 * If you want to override this in a child theme, then include a file
-				 * called content-___.php (where ___ is the Post Type name) and that will be used instead.
-				 */
-                      
-
-                    endwhile;
-
-                    the_posts_navigation(); ?>
-                    <!-- end row for if have_post() ->
+                   <?php the_posts_navigation(); ?>
+                    <!-- end row for if  -->
                     </div>
             
 
                     
 
-               <?php endif;
-                ?>
+               <?php endif; ?>
             </div>
             <!-- Side Bar -->
             <div class="col-lg-4">

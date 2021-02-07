@@ -1,0 +1,27 @@
+/*
+Theme Name: Thème enfant de test
+Text Domain: florian-child
+Template: twentynineteen
+*/
+h1{
+    text-align: center;
+}
+
+body.page .main-navigation {
+    display: flex ;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+nav:hover{
+    color: tomato ;
+}
+
+.main-navigation .main-menu > li > a:hover{
+    color: tomato;
+    
+
+}
+.main-navigation .main-menu > li > a{
+    margin-right: 1.5rem;
+}
